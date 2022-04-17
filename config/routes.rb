@@ -14,4 +14,5 @@ Rails.application.routes.draw do
 	post '/login', to: 'sessions#login'
 	delete '/logout', to: 'sessions#logout'
 	get '/sessions/:user_id', to: 'sessions#show'
+	post '/joinboard', to: 'sessions#join_board'
 end

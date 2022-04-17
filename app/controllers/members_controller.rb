@@ -8,6 +8,6 @@ class MembersController < ApplicationController
 	private
 
 	def member_params
-		params.permit(:board_id, :user_id)
+		params.permit(:board_id, :user_id, :is_admin)
 	end
 end
