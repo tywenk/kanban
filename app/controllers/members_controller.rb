@@ -1,2 +1,13 @@
 class MembersController < ApplicationController
+	def create
+		member = Member.create!(member_params)
+		session[:member_id] = member.id
+		render json: member, status: :created
+	end
+
+	private
+
+	def member_params
+		params.permit(:board_id, :user_id)
+	end
 end
