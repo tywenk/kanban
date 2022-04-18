@@ -34,7 +34,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem "rack-cors"
+gem "rack-cors"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -51,3 +51,8 @@ gem 'active_model_serializers',
     '~> 0.10.12',
     git: 'https://github.com/jpawlyn/active_model_serializers.git',
     branch: '0-10-stable'
+
+#allows persistence of ordering of tasks on backend
+gem 'lexorank'
+
+gem 'faker'

@@ -1,45 +1,31 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import NavBar from "./pages/NavBar";
+import Home from "./pages/Home";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import Boards from "./pages/Boards";
+import Board from "./pages/Board";
+import TaskEdit from "./components/TaskEdit";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [loggedInUser, setLoggedInUser] = useState(null);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
-  )
+    <Router>
+      <NavBar />
+      <Routes>
+        <Route index element={<Home />}></Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/boards" element={<Boards />} />
+        <Route path="/boards/:id" element={<Board />}>
+          <Route path="tasks/:id" element={<TaskEdit />}></Route>
+        </Route>
+        <Route path="*" element={<p>There's nothing here: 404</p>} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
