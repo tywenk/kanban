@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import UpdateBoardForm from "../components/UpdateBoardForm";
 
 function Board() {
+  let navigate = useNavigate();
   let { id } = useParams();
   const [board, setBoard] = useState([]);
   const [showUpdateBoard, setShowUpdateBoard] = useState(false);
@@ -32,11 +33,10 @@ function Board() {
   function handleDeleteBoard() {
     fetch(`http://localhost:3000/boards/${id}`, {
       method: "DELETE",
-    }).then((r) => r.json());
+    }).then(navigate("/boards"));
   }
 
   function handleUpdateBoard() {
-    event.stopPropagation();
     fetch(`http://localhost:3000/boards/${id}`, {
       method: "PATCH",
       headers: {

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-	# skip_before_action :authorize_user
+	skip_before_action :authorize_user, only: %i[create index]
+
 	# skip_before_action :authorize_member
 
 	# POST /signup
@@ -14,10 +15,9 @@ class UsersController < ApplicationController
 		render json: User.all
 	end
 
-	# GET /users/:id
+	# GET /authorize_user
 	def show
-		user = User.find_by(id: params[:user_id])
-		render json: user
+		render json: @current_user
 	end
 
 	private

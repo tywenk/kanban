@@ -4,16 +4,18 @@ class ApplicationController < ActionController::API
 	rescue_from ActiveRecord::RecordInvalid,
 	            with: :render_unprocessable_entity_response
 
-	# before_action :authorize_user, :authorize_member
+	before_action :authorize_user
+
+	#before_action :authorize_member
 
 	private
 
 	def current_user
-		User.find_by(id: session[:user_id])
+		@current_user = User.find_by(id: session[:user_id])
 	end
 
 	def current_member
-		Member.find_by(id: session[:member_id])
+		@current_member = Member.find_by(id: session[:member_id])
 	end
 
 	def authorize_user
@@ -29,7 +31,7 @@ class ApplicationController < ActionController::API
 	end
 
 	def authorize_admin
-		unless current_member.admin
+		unless @current_member.admin
 			render json: { error: 'Not admin user' }, status: :unauthorized
 		end
 	end

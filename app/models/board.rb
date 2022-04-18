@@ -1,6 +1,6 @@
 class Board < ApplicationRecord
-	has_many :members
+	has_many :members, dependent: :destroy
 	has_many :users, through: :members
-	has_many :lists
-	has_many :tasks, through: :lists
+	has_many :lists, dependent: :destroy
+	has_many :tasks, through: :lists, dependent: :destroy
 end

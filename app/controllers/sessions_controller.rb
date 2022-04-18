@@ -1,9 +1,10 @@
 class SessionsController < ApplicationController
-	# skip_before_action :authorize_user
+	skip_before_action :authorize_user
+
 	# skip_before_action :authorize_member
 
 	#POST /login
-	def login
+	def create
 		user = User.find_by(username: params[:username])
 		if user&.authenticate(params[:password])
 			session[:user_id] = user.id
@@ -14,10 +15,12 @@ class SessionsController < ApplicationController
 			       },
 			       status: :unauthorized
 		end
+
+		# debugger
 	end
 
 	#POST /logout
-	def logout
+	def destroy
 		session.delete :current_user
 	end
 

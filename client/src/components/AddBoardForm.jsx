@@ -1,17 +1,17 @@
 import React from "react";
 
-function UpdateBoardForm({
-  updateFormState,
-  setUpdateFormState,
-  handleUpdateBoard,
+function AddBoardForm({
+  addBoardFormState,
+  setAddBoardFormState,
+  handleAddBoard,
 }) {
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setUpdateFormState((formState) => ({ ...formState, [name]: value }));
+    setAddBoardFormState((formState) => ({ ...formState, [name]: value }));
   };
 
   function handleSubmit(event) {
-    handleUpdateBoard();
+    handleAddBoard();
   }
 
   return (
@@ -20,9 +20,9 @@ function UpdateBoardForm({
         <label>name</label>
         <input
           type="text"
-          placeholder="enter new name"
+          placeholder="enter a name"
           name="name"
-          value={updateFormState.name}
+          value={addBoardFormState.name}
           onChange={handleChange}
         />
       </form>
@@ -30,4 +30,4 @@ function UpdateBoardForm({
   );
 }
 
-export default UpdateBoardForm;
+export default AddBoardForm;
