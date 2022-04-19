@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
-	skip_before_action :authorize_user
+	#skip_before_action :authorize_user
 
 	# skip_before_action :authorize_member
 	# still needs a session created as a member

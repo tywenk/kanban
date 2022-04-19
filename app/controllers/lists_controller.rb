@@ -1,6 +1,11 @@
 class ListsController < ApplicationController
-	skip_before_action :authorize_user
+	#skip_before_action :authorize_user
 	# skip_before_action :authorize_member
+
+	def index 
+		render json: List.all
+	end
+
 	
 	def create
 		list = List.create!(list_params)

@@ -25,17 +25,6 @@ function Boards() {
     })
       .then((r) => r.json())
       .then((r) => setBoards(r));
-
-    fetch("http://localhost:3000/authorize_user", {
-      method: "GET",
-      // credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-      .then((r) => r.json())
-      .then(console.log);
   }, []);
 
   function handleShowAddBoard() {

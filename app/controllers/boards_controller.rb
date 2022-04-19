@@ -1,5 +1,5 @@
 class BoardsController < ApplicationController
-	skip_before_action :authorize_user
+	#skip_before_action :authorize_user, except: [:index]
 
 	# skip_before_action :authorize_member
 
@@ -8,7 +8,7 @@ class BoardsController < ApplicationController
 	end
 
 	def show
-		render json: find_board
+		render json: find_board, include: ['lists', 'lists.tasks']
 	end
 
 	def create

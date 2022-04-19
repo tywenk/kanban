@@ -64,10 +64,12 @@ l10 = List.create(board: b4, name: 'To Do')
 l11 = List.create(board: b4, name: 'In Progress')
 l12 = List.create(board: b4, name: 'Completed')
 
-t1 = Task.create(list: l1, user: u1, member_id: m1, title: 'test title', content: 'test content', priority: 1)
-t1 = Task.create(list: l4, user: u2, member_id: m2, title: 'test title', content: 'test content', priority: 1)
-t1 = Task.create(list: l8, user: u3, member_id: m3, title: 'test title', content: 'test content', priority: 1)
-t1 = Task.create(list: l12, user: u4, member_id: m4, title: 'test title', content: 'test content', priority: 1)
+t1 = Task.create(list: l1, user: u1, member: m1, title: 'test title', content: 'test content', priority: 1)
+t2 = Task.create(list: l4, user: u2, member: m2, title: 'test title', content: 'test content', priority: 1)
+t3 = Task.create(list: l8, user: u3, member: m3, title: 'test title', content: 'test content', priority: 1)
+t4 = Task.create(list: l12, user: u4, member: m4, title: 'test title', content: 'test content', priority: 1)
+
+t5 = Task.create(list: l1, user: u1, member: m1, title: 'test', content: 'test', priority: 1)
 
 # 20.times do
 # 	Task.new(

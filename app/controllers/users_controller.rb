@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	skip_before_action :authorize_user, only: %i[create index]
+	#skip_before_action :authorize_user, only: %i[create index]
 
 	# skip_before_action :authorize_member
 
