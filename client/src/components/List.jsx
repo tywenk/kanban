@@ -1,4 +1,5 @@
 import React from 'react'
+import Task from './Task'
 import { useEffect, useState } from 'react'
 
 
@@ -13,9 +14,14 @@ function List({ list }) {
         })
     }
 
+    const tasks = list.tasks?.map((task) => (
+      <Task task={task} key={task.id + task.title}/>
+    ))
+
   return (
     <div>
-        {list.name}&nbsp;
+        {list.name}&nbsp;{tasks}
+        
         <button onClick={handleDeleteList}> Delete List </button>
         &nbsp;
         <button> Update List </button>
