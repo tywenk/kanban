@@ -8,8 +8,10 @@ import List from "../components/List";
 //Needs
 function Board() {
   let navigate = useNavigate();
-  let { id } = useParams();
+  let { id } = useParams(); //id of board
+
   const [board, setBoard] = useState([]);
+  const [lists, setLists] = useState([]);
   const [showUpdateBoard, setShowUpdateBoard] = useState(false);
 
   let initialUpdateFormState = {
@@ -25,12 +27,13 @@ function Board() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
       },
     })
       .then((r) => r.json())
-      .then((r) => setBoard(r))
-      
+      .then((board) => {
+        setBoard(board);
+        setLists(board.lists);
+      });
   }, []);
 
   // const users = board.users.map((user) => (
@@ -58,20 +61,40 @@ function Board() {
     setShowUpdateBoard(!showUpdateBoard);
   }
 
-  const lists = board.lists?.map((list) => (
-    <List key={list.name + list.id }list={list}/>
-  ))
+  const listItems = lists?.map((list) => (
+    <List
+      key={list.name + list.id}
+      list={list}
+      lists={lists}
+      setLists={setLists}
+    />
+  ));
 
   return (
     <div>
-      {board.name}<br />
-      <br/>
-      {lists}
-      <br/>
-      <button> Add List </button>
-      <br/>
-      <button onClick={handleDeleteBoard}> Delete Board </button><br/>
-      <button onClick={handleShowEditBoard}> Update Board </button><br/>
+      <h1 className="text-xl">{board.name}</h1>
+      <br />
+      <br />
+      <div className="grid grid-cols-1">{listItems}</div>
+      <br />
+      <button className="rounded-full bg-green-200 m-2 p-1"> Add List </button>
+      <br />
+      <button
+        onClick={handleDeleteBoard}
+        className="rounded-full bg-red-200 m-2 p-1"
+      >
+        {" "}
+        Delete Board{" "}
+      </button>
+      <br />
+      <button
+        onClick={handleShowEditBoard}
+        className="rounded-full bg-yellow-200 m-2 p-1"
+      >
+        {" "}
+        Update Board{" "}
+      </button>
+      <br />
       {showUpdateBoard ? (
         <UpdateBoardForm
           updateFormState={updateFormState}

@@ -20,7 +20,6 @@ function Boards() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
       },
     })
       .then((r) => r.json())
@@ -48,8 +47,8 @@ function Boards() {
         Accept: "application/json",
       },
       //This needs to be dynamic, not sure how to grab user_id board_id
-      body: JSON.stringify({is_admin: true, board_id: 1, user_id: 1, })
-    })
+      body: JSON.stringify({ is_admin: true, board_id: 1, user_id: 1 }),
+    });
   }
 
   const boardCells = boards.map((board) => (

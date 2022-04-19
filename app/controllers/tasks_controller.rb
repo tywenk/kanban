@@ -30,10 +30,10 @@ class TasksController < ApplicationController
 	private
 
 	def find_task
-		task = Task.find(params[:id])
+		task = Task.find_by!(id: params[:id])
 	end
 
 	def task_params
-		params.permit(:list_id, :user_id, :member_id, :title, :content, :priority)
+		params.permit(:list_id, :user_id, :title, :member_id, :content, :priority)
 	end
 end
