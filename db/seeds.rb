@@ -44,12 +44,30 @@ m10 = Member.create(board: b2, user: u6, is_admin: false)
 m11 = Member.create(board: b3, user: u6, is_admin: false)
 m12 = Member.create(board: b3, user: u7, is_admin: false)
 
-Board.all.each do |b|
-	List.new(board: b, name: 'To Do')
-	List.new(board: b, name: 'In Progress')
-	List.new(board: b, name: 'Testing')
-	List.new(board: b, name: 'Completed')
-end
+# Board.all.each do |b|
+# 	List.new(board: b1, name: 'To Do')
+# 	List.new(board: b2, name: 'In Progress')
+# 	List.new(board: b3, name: 'Testing')
+# 	List.new(board: b4, name: 'Completed')
+# end
+
+l1 = List.create(board: b1, name: 'To Do')
+l2 = List.create(board: b1, name: 'In Progress')
+l3 = List.create(board: b1, name: 'Completed')
+l4 = List.create(board: b2, name: 'To Do')
+l5 = List.create(board: b2, name: 'In Progress')
+l6 = List.create(board: b2, name: 'Completed')
+l7 = List.create(board: b3, name: 'To Do')
+l8 = List.create(board: b3, name: 'In Progress')
+l9 = List.create(board: b3, name: 'Completed')
+l10 = List.create(board: b4, name: 'To Do')
+l11 = List.create(board: b4, name: 'In Progress')
+l12 = List.create(board: b4, name: 'Completed')
+
+t1 = Task.create(list: l1, user: u1, member_id: m1, title: 'test title', content: 'test content', priority: 1)
+t1 = Task.create(list: l4, user: u2, member_id: m2, title: 'test title', content: 'test content', priority: 1)
+t1 = Task.create(list: l8, user: u3, member_id: m3, title: 'test title', content: 'test content', priority: 1)
+t1 = Task.create(list: l12, user: u4, member_id: m4, title: 'test title', content: 'test content', priority: 1)
 
 # 20.times do
 # 	Task.new(
