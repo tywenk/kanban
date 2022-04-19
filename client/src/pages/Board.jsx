@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import UpdateBoardForm from "../components/UpdateBoardForm";
-
+import List from "../components/List";
+//Needs logic so it's created by a member
+//Needs list logic finished as well
+//Needs
 function Board() {
   let navigate = useNavigate();
   let { id } = useParams();
@@ -27,8 +30,12 @@ function Board() {
     })
       .then((r) => r.json())
       .then((r) => setBoard(r))
-      .then(console.log(board));
+      
   }, []);
+
+  // const users = board.users.map((user) => (
+  //   user.username
+  // ))
 
   function handleDeleteBoard() {
     fetch(`http://localhost:3000/boards/${id}`, {
@@ -51,11 +58,20 @@ function Board() {
     setShowUpdateBoard(!showUpdateBoard);
   }
 
+  const lists = board.lists?.map((list) => (
+    <List key={list.name + list.id }list={list}/>
+  ))
+
   return (
     <div>
-      {board.name}
-      <button onClick={handleDeleteBoard}> Delete Board </button>
-      <button onClick={handleShowEditBoard}> Update Board </button>
+      {board.name}<br />
+      <br/>
+      {lists}
+      <br/>
+      <button> Add List </button>
+      <br/>
+      <button onClick={handleDeleteBoard}> Delete Board </button><br/>
+      <button onClick={handleShowEditBoard}> Update Board </button><br/>
       {showUpdateBoard ? (
         <UpdateBoardForm
           updateFormState={updateFormState}

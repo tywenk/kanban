@@ -51,6 +51,16 @@ function Boards() {
       },
       body: JSON.stringify(addBoardFormState),
     });
+    // Create new member when board is created
+    fetch("http://localhost:3000/members", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json",
+      },
+      //This needs to be dynamic, not sure how to grab user_id board_id
+      body: JSON.stringify({is_admin: true, board_id: 1, user_id: 1, })
+    })
   }
 
   const boardCells = boards.map((board) => (
