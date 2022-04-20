@@ -74,7 +74,7 @@ function Board() {
       <h1 className="text-xl">{board.name}</h1>
       <br />
       <br />
-      <div className="grid grid-cols-1">{listItems}</div>
+      <div className="grid grid-cols-3">{listItems}</div>
       <br />
       <button className="rounded-full bg-green-200 m-2 p-1"> Add List </button>
       <br />
