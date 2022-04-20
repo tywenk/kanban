@@ -8,7 +8,7 @@ function BoardCell({ name, id }) {
     navigate(`/boards/${id}`);
   }
 
-  return <div onClick={handleBoardCellClick}>{name}</div>;
+  return <div className='m-2 p-1 bg-teal-300'onClick={handleBoardCellClick}>{name}</div>;
 }
 
 export default BoardCell;

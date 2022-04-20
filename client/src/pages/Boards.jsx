@@ -57,15 +57,17 @@ function Boards() {
 
   return (
     <div>
-      {boardCells}
+      <div className='grid grid-cols-4'>
+        {boardCells}
+      </div>
+      <button className='rounded-full bg-green-200 m-2 p-1' onClick={handleShowAddBoard}> Add Board </button>
       {showAddBoard ? (
-        <AddBoardForm
-          addBoardFormState={addBoardFormState}
-          setAddBoardFormState={setAddBoardFormState}
-          handleAddBoard={handleAddBoard}
-        />
-      ) : null}
-      <button onClick={handleShowAddBoard}> Add Board </button>
+          <AddBoardForm
+            addBoardFormState={addBoardFormState}
+            setAddBoardFormState={setAddBoardFormState}
+            handleAddBoard={handleAddBoard}
+          />
+        ) : null}
     </div>
   );
 }

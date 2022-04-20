@@ -10,7 +10,7 @@ function Task({ tasks, setTasks, task }) {
   }
 
   return (
-    <div>
+    <div className='bg-slate-100'>
       {task.title}&nbsp;
       <button
         onClick={handleShowEditTask}
