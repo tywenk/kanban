@@ -1,5 +1,6 @@
 import React from "react";
 import Task from "./Task";
+import UpdateListForm from "./UpdateListForm";
 import { useEffect, useState } from "react";
 
 // Lists still need update logic
@@ -9,6 +10,13 @@ function List({ lists, setLists, list }) {
   const [tasks, setTasks] = useState([]);
   const [isAddTask, setIsAddTask] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState("");
+  const [showEditList, setShowEditList] = useState(false)
+
+  let initialUpdateListFormState = {
+    name: "",
+  };
+
+  const [updateListFormState, setUpdateListFormState] = useState(initialUpdateListFormState)
 
   useEffect(() => {
     setTasks(list?.tasks);
@@ -21,6 +29,17 @@ function List({ lists, setLists, list }) {
       let withoutDeletedList = lists.filter((l) => l.id !== list.id);
       setLists(withoutDeletedList);
     });
+  }
+
+  function handleUpdateList() {
+    fetch(`http://localhost:3000/lists/${list.id}`,  {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/JSON",
+        accept: "application/JSON",
+      },
+      body: JSON.stringify(updateListFormState)
+    })
   }
 
   function handleAddTask(task) {
@@ -55,6 +74,10 @@ function List({ lists, setLists, list }) {
     />
   ));
 
+  function handleShowEditList(){
+    setShowEditList(!showEditList)
+  }
+
   return (
     <div className="border border-solid">
       <div className="bg-slate-200">
@@ -87,9 +110,12 @@ function List({ lists, setLists, list }) {
         Delete List
       </button>
       &nbsp;
-      <button className="rounded-full bg-yellow-200 m-2 p-1">
+      <button className="rounded-full bg-yellow-200 m-2 p-1" onClick={handleShowEditList}>
         Update List
       </button>
+      { showEditList ? <UpdateListForm updateListFormState={updateListFormState} setUpdateListFormState={setUpdateListFormState} handleUpdateList={handleUpdateList} /> : null }
+
+      
     </div>
   );
 }

@@ -7,6 +7,7 @@ import List from "../components/List";
 //Needs list logic finished as well
 //Needs
 function Board() {
+
   let navigate = useNavigate();
   let { id } = useParams(); //id of board
 
@@ -43,7 +44,8 @@ function Board() {
   function handleDeleteBoard() {
     fetch(`http://localhost:3000/boards/${id}`, {
       method: "DELETE",
-    }).then(navigate("/boards"));
+    }).then(navigate("/boards"))
+    
   }
 
   function handleUpdateBoard() {
@@ -62,13 +64,10 @@ function Board() {
   }
 
   const listItems = lists?.map((list) => (
-    <List
-      key={list.name + list.id}
-      list={list}
-      lists={lists}
-      setLists={setLists}
-    />
+    <List key={list.name + list.id} list={list} lists={lists} setLists={setLists}/>
   ));
+
+  //const orderedListItems = listItems.sortby(list.rank)
 
   return (
     <div>
